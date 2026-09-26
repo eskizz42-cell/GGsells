@@ -7,431 +7,273 @@
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <style>
 :root {
-    --bg: #f2f2f7;
-    --card: #ffffff;
-    --text: #1c1c1e;
-    --text2: #8e8e93;
-    --green: #34c759;
-    --green-light: #e5f5e9;
-    --red: #ff3b30;
-    --red-light: #ffe5e5;
-    --yellow: #ffcc00;
-    --orange: #ff9500;
-    --purple: #af52de;
-    --purple-light: #f3e8fd;
-    --blue: #007aff;
-    --blue-light: #e5f0ff;
-    --radius: 16px;
+    --bg: #f2f2f7; --card: #ffffff; --text: #1c1c1e; --text2: #8e8e93;
+    --green: #34c759; --green-light: #e5f5e9; --red: #ff3b30; --red-light: #ffe5e5;
+    --yellow: #ffcc00; --orange: #ff9500; --purple: #af52de; --purple-light: #f3e8fd;
+    --blue: #007aff; --blue-light: #e5f0ff; --radius: 16px;
     --shadow: 0 1px 3px rgba(0,0,0,0.04);
 }
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    background: var(--bg);
-    margin: 0; padding: 0;
-    color: var(--text);
-    padding-bottom: 100px;
-    overflow-x: hidden;
-}
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg); margin: 0; padding: 0; color: var(--text);
+    padding-bottom: 100px; overflow-x: hidden; }
 .container { padding: 16px; max-width: 500px; margin: 0 auto; }
-
-.icon {
-    width: 20px; height: 20px;
-    stroke: currentColor; fill: none; stroke-width: 1.8;
-    stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0;
-}
-.icon-lg { width: 24px; height: 24px; }
-.icon-sm { width: 16px; height: 16px; }
-
+.icon { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 1.8;
+    stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+.icon-lg { width: 24px; height: 24px; } .icon-sm { width: 16px; height: 16px; }
 .header { display: flex; justify-content: space-between; align-items: center; padding: 12px 0 20px 0; }
 .logo { font-size: 24px; font-weight: 800; display: flex; align-items: center; gap: 8px; }
-.logo-icon {
-    width: 32px; height: 32px; background: var(--green); border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-    color: white; font-weight: bold; font-size: 18px;
-}
-.help-btn {
-    width: 36px; height: 36px; border-radius: 50%; background: #fff; border: none;
+.logo-icon { width: 32px; height: 32px; background: var(--green); border-radius: 8px;
+    display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 18px; }
+.help-btn { width: 36px; height: 36px; border-radius: 50%; background: #fff; border: none;
     box-shadow: var(--shadow); display: flex; align-items: center; justify-content: center;
-    color: var(--text2); cursor: pointer;
-}
-.section-title { font-size: 16px; font-weight: 700; margin: 20px 0 12px 0; display: flex; justify-content: space-between; align-items: center; }
+    color: var(--text2); cursor: pointer; }
+.section-title { font-size: 16px; font-weight: 700; margin: 20px 0 12px 0;
+    display: flex; justify-content: space-between; align-items: center; }
 .section-title .link { color: var(--green); font-size: 14px; font-weight: 600; cursor: pointer; }
-.section-title .count-badge {
-    background: var(--green-light); color: var(--green);
-    font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 10px;
-    margin-left: 6px;
-}
-
-.banner {
-    background: #1a1e26; border-radius: var(--radius); padding: 20px;
-    position: relative; overflow: hidden; color: white; margin-bottom: 20px;
-}
-.banner-badge {
-    display: inline-block; background: var(--green); color: white;
+.section-title .count-badge { background: var(--green-light); color: var(--green);
+    font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 10px; margin-left: 6px; }
+.banner { background: #1a1e26; border-radius: var(--radius); padding: 20px;
+    position: relative; overflow: hidden; color: white; margin-bottom: 20px; }
+.banner-badge { display: inline-block; background: var(--green); color: white;
     font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 20px;
-    margin-bottom: 12px; text-transform: uppercase;
-}
+    margin-bottom: 12px; text-transform: uppercase; }
 .banner h1 { font-size: 22px; margin: 0 0 8px 0; line-height: 1.2; }
 .banner p { font-size: 13px; color: #a0a0a5; margin: 0 0 16px 0; line-height: 1.4; }
-.banner-btn {
-    background: white; color: #1a1e26; border: none; padding: 10px 20px;
+.banner-btn { background: white; color: #1a1e26; border: none; padding: 10px 20px;
     border-radius: 30px; font-weight: 600; font-size: 14px; cursor: pointer;
-    display: inline-flex; align-items: center; gap: 8px;
-}
-.banner-bg-logo {
-    position: absolute; right: -20px; bottom: -20px; font-size: 140px;
-    font-weight: 900; color: rgba(52, 199, 89, 0.15); line-height: 1; pointer-events: none;
-}
-
+    display: inline-flex; align-items: center; gap: 8px; }
+.banner-bg-logo { position: absolute; right: -20px; bottom: -20px; font-size: 140px;
+    font-weight: 900; color: rgba(52, 199, 89, 0.15); line-height: 1; pointer-events: none; }
 .quick-actions { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 20px; }
-.action-card {
-    background: var(--card); border-radius: var(--radius); padding: 16px 10px;
+.action-card { background: var(--card); border-radius: var(--radius); padding: 16px 10px;
     text-align: center; box-shadow: var(--shadow); cursor: pointer;
-    display: flex; flex-direction: column; align-items: center; gap: 8px;
-    transition: transform 0.1s;
-}
+    display: flex; flex-direction: column; align-items: center; gap: 8px; transition: transform 0.1s; }
 .action-card:active { transform: scale(0.97); }
-.action-icon {
-    width: 40px; height: 40px; background: #f2f2f7; border-radius: 10px;
-    display: flex; align-items: center; justify-content: center; color: var(--text);
-}
+.action-icon { width: 40px; height: 40px; background: #f2f2f7; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center; color: var(--text); }
 .action-text { font-size: 12px; font-weight: 600; line-height: 1.2; }
-
-.balance-card {
-    background: var(--card); border-radius: var(--radius); padding: 20px;
-    box-shadow: var(--shadow); margin-bottom: 16px;
-}
+.balance-card { background: var(--card); border-radius: var(--radius); padding: 20px;
+    box-shadow: var(--shadow); margin-bottom: 16px; }
 .balance-label { font-size: 13px; color: var(--text2); margin-bottom: 6px; }
-.balance-amount { font-size: 32px; font-weight: 800; margin-bottom: 16px; display: flex; align-items: baseline; gap: 6px; }
+.balance-amount { font-size: 32px; font-weight: 800; margin-bottom: 16px;
+    display: flex; align-items: baseline; gap: 6px; }
 .currency-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-.currency-tag {
-    background: #f2f2f7; color: var(--text2); padding: 6px 14px;
+.currency-tag { background: #f2f2f7; color: var(--text2); padding: 6px 14px;
     border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer;
-    transition: all 0.2s; user-select: none;
-}
+    transition: all 0.2s; user-select: none; }
 .currency-tag.active { background: var(--green); color: white; }
-
 .profile-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
 .stat-card { background: var(--card); border-radius: var(--radius); padding: 16px; box-shadow: var(--shadow); }
-.stat-value { font-size: 24px; font-weight: 800; margin-bottom: 4px; display: flex; align-items: center; gap: 4px; }
+.stat-value { font-size: 24px; font-weight: 800; margin-bottom: 4px;
+    display: flex; align-items: center; gap: 4px; }
 .stat-label { font-size: 12px; color: var(--text2); }
-
-.menu-list { background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; margin-bottom: 20px; }
-.menu-item {
-    display: flex; align-items: center; padding: 16px;
-    border-bottom: 1px solid #f2f2f7; cursor: pointer; transition: background 0.2s;
-}
+.menu-list { background: var(--card); border-radius: var(--radius);
+    box-shadow: var(--shadow); overflow: hidden; margin-bottom: 20px; }
+.menu-item { display: flex; align-items: center; padding: 16px;
+    border-bottom: 1px solid #f2f2f7; cursor: pointer; transition: background 0.2s; }
 .menu-item:last-child { border-bottom: none; }
 .menu-item:active { background: #f9f9f9; }
-.menu-icon {
-    width: 40px; height: 40px; background: #f2f2f7; border-radius: 10px;
+.menu-icon { width: 40px; height: 40px; background: #f2f2f7; border-radius: 10px;
     display: flex; align-items: center; justify-content: center;
-    margin-right: 14px; flex-shrink: 0; color: var(--text);
-}
+    margin-right: 14px; flex-shrink: 0; color: var(--text); }
 .menu-text { flex-grow: 1; font-size: 15px; font-weight: 500; }
 .menu-arrow { color: #c7c7cc; }
 .menu-item.danger .menu-text { color: var(--red); }
 .menu-item.danger .menu-icon { background: var(--red-light); color: var(--red); }
-
-.bottom-nav {
-    position: fixed; bottom: 0; left: 0; right: 0;
+.bottom-nav { position: fixed; bottom: 0; left: 0; right: 0;
     background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px); border-top: 1px solid #e5e5ea;
     display: flex; justify-content: space-around; padding: 8px 0 20px 0;
-    z-index: 100; max-width: 500px; margin: 0 auto;
-}
-.nav-item {
-    display: flex; flex-direction: column; align-items: center; gap: 4px;
+    z-index: 100; max-width: 500px; margin: 0 auto; }
+.nav-item { display: flex; flex-direction: column; align-items: center; gap: 4px;
     color: var(--text2); font-size: 10px; font-weight: 500; cursor: pointer;
-    flex: 1; padding: 6px 0;
-}
+    flex: 1; padding: 6px 0; }
 .nav-item.active { color: var(--green); }
 .nav-icon { display: flex; align-items: center; justify-content: center; }
-
-.fab {
-    position: fixed; bottom: 60px; left: 50%; transform: translateX(-50%);
+.fab { position: fixed; bottom: 60px; left: 50%; transform: translateX(-50%);
     width: 56px; height: 56px; background: var(--green); border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    color: white; box-shadow: 0 4px 12px rgba(52,199,89,0.4);
-    cursor: pointer; z-index: 101; transition: transform 0.1s;
-    border: 4px solid var(--bg);
-}
+    display: flex; align-items: center; justify-content: center; color: white;
+    box-shadow: 0 4px 12px rgba(52,199,89,0.4); cursor: pointer; z-index: 101;
+    transition: transform 0.1s; border: 4px solid var(--bg); }
 .fab:active { transform: translateX(-50%) scale(0.95); }
-
 .screen { display: none; animation: fadeIn 0.2s ease-in-out; }
 .screen.active { display: block; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
-
-.review-card { background: var(--card); border-radius: var(--radius); padding: 16px; margin-bottom: 10px; box-shadow: var(--shadow); }
+.review-card { background: var(--card); border-radius: var(--radius); padding: 16px;
+    margin-bottom: 10px; box-shadow: var(--shadow); }
 .review-header { display: flex; align-items: center; margin-bottom: 8px; }
-.avatar {
-    width: 36px; height: 36px; border-radius: 50%; background: var(--green-light);
+.avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--green-light);
     color: var(--green); display: flex; align-items: center; justify-content: center;
-    font-weight: bold; font-size: 16px; margin-right: 12px; flex-shrink: 0;
-}
+    font-weight: bold; font-size: 16px; margin-right: 12px; flex-shrink: 0; }
 .user-info { flex-grow: 1; }
 .username { font-weight: 600; font-size: 14px; margin: 0; }
 .date { font-size: 11px; color: var(--text2); margin-top: 2px; }
 .stars { color: var(--yellow); display: flex; gap: 1px; }
 .review-text { font-size: 13px; line-height: 1.4; color: #3a3a3c; margin: 0; }
-
-.req-card {
-    background: var(--card); border-radius: var(--radius); padding: 16px;
+.req-card { background: var(--card); border-radius: var(--radius); padding: 16px;
     box-shadow: var(--shadow); margin-bottom: 10px; display: flex;
-    align-items: center; justify-content: space-between; cursor: pointer;
-}
+    align-items: center; justify-content: space-between; cursor: pointer; }
 .req-left { display: flex; align-items: center; gap: 12px; }
-.req-icon { width: 40px; height: 40px; background: #f2f2f7; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--text); }
+.req-icon { width: 40px; height: 40px; background: #f2f2f7; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center; color: var(--text); }
 .req-title { font-size: 15px; font-weight: 600; }
 .req-sub { font-size: 12px; color: var(--text2); margin-top: 2px; }
-
 .form-group { margin-bottom: 16px; }
 .form-label { font-size: 13px; font-weight: 600; color: var(--text2); margin-bottom: 8px; display: block; }
 .role-switch { display: flex; background: #f2f2f7; border-radius: 30px; padding: 4px; }
-.role-btn {
-    flex: 1; text-align: center; padding: 10px; border-radius: 26px;
-    font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s;
-}
+.role-btn { flex: 1; text-align: center; padding: 10px; border-radius: 26px;
+    font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
 .role-btn.active { background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-.form-input, .form-textarea {
-    width: 100%; padding: 14px; border-radius: 12px; border: 1px solid #e5e5ea;
-    font-size: 16px; background: white; outline: none; font-family: inherit;
-}
+.form-input, .form-textarea { width: 100%; padding: 14px; border-radius: 12px;
+    border: 1px solid #e5e5ea; font-size: 16px; background: white; outline: none; font-family: inherit; }
 .form-input:focus, .form-textarea:focus { border-color: var(--green); }
 .form-textarea { min-height: 80px; resize: vertical; font-size: 14px; }
-.btn-primary {
-    width: 100%; background: var(--green); color: white; border: none;
+.btn-primary { width: 100%; background: var(--green); color: white; border: none;
     padding: 16px; border-radius: 30px; font-size: 16px; font-weight: 700;
     cursor: pointer; box-shadow: 0 4px 12px rgba(52,199,89,0.3);
-    margin-top: 10px; display: flex; align-items: center; justify-content: center; gap: 8px;
-}
+    margin-top: 10px; display: flex; align-items: center; justify-content: center; gap: 8px; }
 .btn-primary:active { transform: scale(0.98); }
-.btn-secondary {
-    width: 100%; background: #f2f2f7; color: var(--text); border: none;
+.btn-secondary { width: 100%; background: #f2f2f7; color: var(--text); border: none;
     padding: 16px; border-radius: 30px; font-size: 16px; font-weight: 600;
-    cursor: pointer; margin-top: 10px; display: flex; align-items: center; justify-content: center; gap: 8px;
-}
-
-.empty-state {
-    background: var(--card); border-radius: var(--radius); padding: 40px 20px;
-    text-align: center; border: 2px dashed #e5e5ea; margin-bottom: 20px;
-}
+    cursor: pointer; margin-top: 10px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+.empty-state { background: var(--card); border-radius: var(--radius); padding: 40px 20px;
+    text-align: center; border: 2px dashed #e5e5ea; margin-bottom: 20px; }
 .empty-icon { margin-bottom: 12px; color: #c7c7cc; display: flex; justify-content: center; }
 .empty-text { color: var(--text2); font-size: 14px; }
-
-.modal {
-    position: fixed; inset: 0; background: rgba(0,0,0,0.5);
-    z-index: 1000; display: none; align-items: flex-end; justify-content: center;
-}
+.modal { position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+    z-index: 1000; display: none; align-items: flex-end; justify-content: center; }
 .modal.active { display: flex; }
-.modal-content {
-    background: var(--bg); width: 100%; max-width: 500px;
-    border-radius: 24px 24px 0 0; padding: 20px;
-    max-height: 92vh; overflow-y: auto;
-    animation: slideUp 0.3s ease-out;
-}
+.modal-content { background: var(--bg); width: 100%; max-width: 500px;
+    border-radius: 24px 24px 0 0; padding: 20px; max-height: 92vh; overflow-y: auto;
+    animation: slideUp 0.3s ease-out; }
 @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
-.modal-header {
-    display: flex; justify-content: space-between; align-items: center;
-    margin-bottom: 16px;
-}
+.modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
 .modal-title { font-size: 20px; font-weight: 800; display: flex; align-items: center; gap: 8px; }
-.badge {
-    background: var(--green-light); color: var(--green);
-    font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px;
-}
-.close-btn {
-    width: 32px; height: 32px; border-radius: 50%; background: #f2f2f7;
+.badge { background: var(--green-light); color: var(--green);
+    font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px; }
+.close-btn { width: 32px; height: 32px; border-radius: 50%; background: #f2f2f7;
     border: none; display: flex; align-items: center; justify-content: center;
-    color: var(--text2); cursor: pointer;
-}
-.tabs {
-    display: flex; background: #e5e5ea; border-radius: 30px; padding: 4px; margin-bottom: 20px;
-}
-.tab {
-    flex: 1; text-align: center; padding: 10px; border-radius: 26px;
-    font-size: 14px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;
-}
+    color: var(--text2); cursor: pointer; }
+.tabs { display: flex; background: #e5e5ea; border-radius: 30px; padding: 4px; margin-bottom: 20px; }
+.tab { flex: 1; text-align: center; padding: 10px; border-radius: 26px;
+    font-size: 14px; font-weight: 600; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 6px; }
 .tab.active { background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-.tab-section { display: none; }
-.tab-section.active { display: block; }
+.tab-section { display: none; } .tab-section.active { display: block; }
 .field { margin-bottom: 14px; }
-.field label { font-size: 13px; font-weight: 600; color: var(--text2); margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
-.field input, .field textarea {
-    width: 100%; padding: 12px 14px; border-radius: 12px;
-    border: 1px solid #e5e5ea; font-size: 16px; background: white; outline: none; font-family: inherit;
-}
+.field label { font-size: 13px; font-weight: 600; color: var(--text2);
+    margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+.field input, .field textarea { width: 100%; padding: 12px 14px; border-radius: 12px;
+    border: 1px solid #e5e5ea; font-size: 16px; background: white; outline: none; font-family: inherit; }
 .field textarea { min-height: 80px; resize: vertical; font-size: 14px; }
-
-.worker-access-btn {
-    display: none;
+.worker-access-btn { display: none;
     background: linear-gradient(135deg, #1a1e26 0%, #2c3e50 100%);
     color: white; border: none; border-radius: var(--radius);
     padding: 16px; width: 100%; font-size: 15px; font-weight: 700;
     cursor: pointer; margin-bottom: 20px;
-    align-items: center; justify-content: center; gap: 10px;
-}
+    align-items: center; justify-content: center; gap: 10px; }
 .worker-access-btn.visible { display: flex; }
-
-.deal-item {
-    background: var(--card); border-radius: var(--radius); padding: 16px;
-    box-shadow: var(--shadow); margin-bottom: 10px; cursor: pointer;
-}
+.deal-item { background: var(--card); border-radius: var(--radius); padding: 16px;
+    box-shadow: var(--shadow); margin-bottom: 10px; cursor: pointer; }
 .deal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
 .deal-id { font-size: 14px; font-weight: 700; }
-.deal-status {
-    font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px;
-}
+.deal-status { font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px; }
 .status-wait { background: #fff7e5; color: #ff9500; }
 .status-active { background: var(--green-light); color: var(--green); }
 .status-purple { background: var(--purple-light); color: var(--purple); }
 .status-done { background: #e5e5ea; color: var(--text2); }
 .deal-amount { font-size: 22px; font-weight: 800; margin-bottom: 6px; }
 .deal-link { font-size: 12px; color: var(--text2); margin-bottom: 8px; word-break: break-all; }
-.deal-time { font-size: 11px; color: var(--text2); background: #f2f2f7; padding: 2px 8px; border-radius: 10px; display: inline-block; margin-bottom: 10px; }
+.deal-time { font-size: 11px; color: var(--text2); background: #f2f2f7;
+    padding: 2px 8px; border-radius: 10px; display: inline-block; margin-bottom: 10px; }
 .deal-progress { display: flex; align-items: center; gap: 4px; margin-top: 8px; }
 .progress-dot { width: 10px; height: 10px; border-radius: 50%; background: #e5e5ea; flex-shrink: 0; }
 .progress-dot.active { background: var(--green); box-shadow: 0 0 0 2px rgba(52,199,89,0.2); }
 .progress-dot.current { background: white; border: 2px solid var(--green); }
 .progress-line { flex: 1; height: 3px; background: #e5e5ea; border-radius: 2px; }
 .progress-line.active { background: var(--green); }
-
-.deal-detail-header {
-    display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;
-}
 .deal-detail-id { font-size: 22px; font-weight: 800; }
-.status-badge {
-    font-size: 12px; font-weight: 700; padding: 6px 12px; border-radius: 20px;
-}
-.status-step {
-    background: #f2f2f7; border-radius: var(--radius); padding: 16px;
-    text-align: center; margin-bottom: 16px;
-}
+.status-badge { font-size: 12px; font-weight: 700; padding: 6px 12px; border-radius: 20px; }
+.status-step { background: #f2f2f7; border-radius: var(--radius); padding: 16px;
+    text-align: center; margin-bottom: 16px; }
 .status-step-label { font-size: 11px; color: var(--text2); font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
 .status-step-title { font-size: 16px; font-weight: 700; margin: 4px 0 12px 0; }
 .status-steps { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
 .step-item { display: flex; flex-direction: column; align-items: center; gap: 4px; flex: 1; }
-.step-dot {
-    width: 20px; height: 20px; border-radius: 50%; background: #e5e5ea;
-    border: 2px solid #e5e5ea;
-}
+.step-dot { width: 20px; height: 20px; border-radius: 50%; background: #e5e5ea; border: 2px solid #e5e5ea; }
 .step-dot.active { background: var(--green); border-color: var(--green); box-shadow: 0 0 0 3px rgba(52,199,89,0.2); }
 .step-dot.current { background: white; border-color: var(--green); box-shadow: 0 0 0 3px rgba(52,199,89,0.2); }
 .step-label { font-size: 9px; color: var(--text2); font-weight: 600; text-align: center; }
 .step-label.active { color: var(--green); }
-.step-secure { font-size: 11px; color: var(--text2); display: flex; align-items: center; justify-content: center; gap: 4px; margin-top: 8px; }
-
-.deal-info-card {
-    background: var(--card); border-radius: var(--radius); padding: 16px;
-    box-shadow: var(--shadow); margin-bottom: 16px;
-}
-.deal-info-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #f2f2f7; font-size: 14px; }
+.step-secure { font-size: 11px; color: var(--text2); display: flex; align-items: center;
+    justify-content: center; gap: 4px; margin-top: 8px; }
+.deal-info-card { background: var(--card); border-radius: var(--radius); padding: 16px;
+    box-shadow: var(--shadow); margin-bottom: 16px; }
+.deal-info-row { display: flex; justify-content: space-between; padding: 10px 0;
+    border-bottom: 1px solid #f2f2f7; font-size: 14px; }
 .deal-info-row:last-child { border-bottom: none; }
 .deal-info-row .label { color: var(--text2); }
 .deal-info-row .value { font-weight: 600; text-align: right; }
 .deal-info-row .value.green { color: var(--green); }
-
-.deal-hint {
-    background: #fff7e5; border-radius: var(--radius); padding: 16px;
-    margin-bottom: 16px; font-size: 13px; color: #8a6d00; line-height: 1.4;
-}
+.deal-hint { background: #fff7e5; border-radius: var(--radius); padding: 16px;
+    margin-bottom: 16px; font-size: 13px; color: #8a6d00; line-height: 1.4; }
 .deal-hint strong { color: #6b5500; display: block; margin-bottom: 6px; font-size: 12px; letter-spacing: 0.5px; }
 .deal-hint.blue { background: var(--blue-light); color: #004a99; }
 .deal-hint.blue strong { color: #003366; }
 .deal-hint.purple { background: var(--purple-light); color: #5e2b8a; }
 .deal-hint.purple strong { color: #4a1f70; }
-
-.safety-modal {
-    position: fixed; inset: 0; background: rgba(0,0,0,0.6);
-    z-index: 2000; display: none; align-items: center; justify-content: center;
-    padding: 20px;
-}
+.safety-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.6);
+    z-index: 2000; display: none; align-items: center; justify-content: center; padding: 20px; }
 .safety-modal.active { display: flex; }
-.safety-content {
-    background: white; border-radius: 24px; padding: 24px;
+.safety-content { background: white; border-radius: 24px; padding: 24px;
     max-width: 400px; width: 100%; animation: scaleIn 0.3s ease-out;
-    max-height: 90vh; overflow-y: auto;
-}
+    max-height: 90vh; overflow-y: auto; }
 @keyframes scaleIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 .safety-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
-.safety-icon {
-    width: 40px; height: 40px; background: var(--red-light); border-radius: 12px;
-    display: flex; align-items: center; justify-content: center; color: var(--red);
-}
+.safety-icon { width: 40px; height: 40px; background: var(--red-light); border-radius: 12px;
+    display: flex; align-items: center; justify-content: center; color: var(--red); }
 .safety-title { font-size: 18px; font-weight: 800; margin: 0; }
 .safety-sub { font-size: 12px; color: var(--text2); margin: 2px 0 0 0; }
-.safety-warning {
-    background: #fff7e5; border: 1px solid #ffe5a5; border-radius: 12px;
-    padding: 12px; margin-bottom: 14px; font-size: 13px; color: #8a6d00;
-    line-height: 1.4;
-}
+.safety-warning { background: #fff7e5; border: 1px solid #ffe5a5; border-radius: 12px;
+    padding: 12px; margin-bottom: 14px; font-size: 13px; color: #8a6d00; line-height: 1.4; }
 .safety-warning strong { display: block; margin-bottom: 4px; }
-.safety-row {
-    display: flex; align-items: center; gap: 10px; padding: 10px 0;
-    font-size: 14px;
-}
-.safety-row .check {
-    width: 28px; height: 28px; border-radius: 8px; display: flex;
-    align-items: center; justify-content: center; flex-shrink: 0;
-}
+.safety-row { display: flex; align-items: center; gap: 10px; padding: 10px 0; font-size: 14px; }
+.safety-row .check { width: 28px; height: 28px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 .safety-row .check.green { background: var(--green-light); color: var(--green); }
 .safety-row .check.red { background: var(--red-light); color: var(--red); }
 .safety-row .check.yellow { background: #fff7e5; color: var(--orange); }
-.safety-danger {
-    background: #fff0f0; border: 1px solid #ffcccc; border-radius: 12px;
+.safety-danger { background: #fff0f0; border: 1px solid #ffcccc; border-radius: 12px;
     padding: 12px; margin-top: 14px; font-size: 12px; color: var(--red);
-    font-weight: 600; text-align: center;
-}
+    font-weight: 600; text-align: center; }
 .safety-danger-tags { display: flex; justify-content: center; gap: 8px; margin-top: 8px; }
-.safety-danger-tags span {
-    background: white; border: 1px solid #ffcccc; padding: 4px 10px;
-    border-radius: 20px; font-size: 11px; color: var(--red);
-}
-
-.manager-modal {
-    position: fixed; inset: 0; background: rgba(0,0,0,0.6);
-    z-index: 2500; display: none; align-items: center; justify-content: center;
-    padding: 20px;
-}
+.safety-danger-tags span { background: white; border: 1px solid #ffcccc; padding: 4px 10px;
+    border-radius: 20px; font-size: 11px; color: var(--red); }
+.manager-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.6);
+    z-index: 2500; display: none; align-items: center; justify-content: center; padding: 20px; }
 .manager-modal.active { display: flex; }
-.manager-content {
-    background: white; border-radius: 24px; padding: 24px;
-    max-width: 400px; width: 100%; animation: scaleIn 0.3s ease-out;
-}
+.manager-content { background: white; border-radius: 24px; padding: 24px;
+    max-width: 400px; width: 100%; animation: scaleIn 0.3s ease-out; }
 .manager-title { font-size: 20px; font-weight: 800; text-align: center; margin-bottom: 12px; }
 .manager-sub { font-size: 16px; font-weight: 700; text-align: center; margin-bottom: 8px; }
 .manager-info { font-size: 13px; color: var(--text2); text-align: center; margin-bottom: 16px; }
-.manager-warning {
-    background: #fff0f0; border: 1px solid #ffcccc; border-radius: 12px;
-    padding: 12px; margin-bottom: 16px; font-size: 13px; color: var(--red);
-    line-height: 1.4;
-}
-
-.share-modal {
-    position: fixed; inset: 0; background: rgba(0,0,0,0.6);
-    z-index: 2200; display: none; align-items: center; justify-content: center;
-    padding: 20px;
-}
+.manager-warning { background: #fff0f0; border: 1px solid #ffcccc; border-radius: 12px;
+    padding: 12px; margin-bottom: 16px; font-size: 13px; color: var(--red); line-height: 1.4; }
+.share-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.6);
+    z-index: 2200; display: none; align-items: center; justify-content: center; padding: 20px; }
 .share-modal.active { display: flex; }
-.share-content {
-    background: white; border-radius: 24px; padding: 20px;
+.share-content { background: white; border-radius: 24px; padding: 20px;
     max-width: 420px; width: 100%; animation: scaleIn 0.3s ease-out;
-    max-height: 90vh; overflow-y: auto;
-}
-.share-text-block {
-    background: #f2f2f7; border-radius: 12px; padding: 14px;
-    font-size: 13px; line-height: 1.5; margin-bottom: 16px; color: #1c1c1e;
-}
-.share-text-block .line {
-    background: white; border-radius: 8px; padding: 8px 12px;
-    margin-bottom: 6px; border-left: 3px solid var(--green);
-}
+    max-height: 90vh; overflow-y: auto; }
+.share-text-block { background: #f2f2f7; border-radius: 12px; padding: 14px;
+    font-size: 13px; line-height: 1.5; margin-bottom: 16px; color: #1c1c1e; }
+.share-text-block .line { background: white; border-radius: 8px; padding: 8px 12px;
+    margin-bottom: 6px; border-left: 3px solid var(--green); }
 </style>
 </head>
 <body>
 
-<!-- ЭКРАН: ГЛАВНАЯ -->
 <div id="screen-home" class="screen active">
 <div class="container">
     <div class="header">
@@ -499,7 +341,6 @@ body {
 </div>
 </div>
 
-<!-- ЭКРАН: СДЕЛКИ -->
 <div id="screen-deals" class="screen">
 <div class="container">
     <div class="header"><div class="logo" style="font-size:20px;"><div class="logo-icon" style="width:28px;height:28px;font-size:16px;">G</div>ggsel</div></div>
@@ -518,7 +359,6 @@ body {
 </div>
 </div>
 
-<!-- ЭКРАН: НОВАЯ СДЕЛКА -->
 <div id="screen-new-deal" class="screen">
 <div class="container">
     <div class="header"><div class="logo" style="font-size:20px;"><div class="logo-icon" style="width:28px;height:28px;font-size:16px;">G</div>ggsel</div></div>
@@ -578,7 +418,6 @@ body {
 </div>
 </div>
 
-<!-- ЭКРАН: РЕКВИЗИТЫ -->
 <div id="screen-requisites" class="screen">
 <div class="container">
     <div class="header"><div class="logo" style="font-size:20px;"><div class="logo-icon" style="width:28px;height:28px;font-size:16px;">G</div>ggsel</div></div>
@@ -614,7 +453,6 @@ body {
 </div>
 </div>
 
-<!-- ЭКРАН: ПРОФИЛЬ -->
 <div id="screen-profile" class="screen">
 <div class="container">
     <div class="header">
@@ -689,7 +527,6 @@ body {
 </div>
 </div>
 
-<!-- НИЖНЕЕ МЕНЮ -->
 <div class="bottom-nav">
     <div class="nav-item active" onclick="switchTab('home')" id="nav-home">
         <div class="nav-icon"><svg class="icon icon-lg" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
@@ -713,12 +550,10 @@ body {
     <svg class="icon icon-lg" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
 </div>
 
-<!-- МОДАЛКА ДЕТАЛЕЙ СДЕЛКИ -->
 <div class="modal" id="dealDetailModal">
 <div class="modal-content" id="dealDetailContent"></div>
 </div>
 
-<!-- МОДАЛКА ВОРК-ПАНЕЛИ -->
 <div class="modal" id="workerModal">
 <div class="modal-content">
     <div class="modal-header">
@@ -755,29 +590,20 @@ body {
         <div class="field"><label>Баланс USDT ($)</label><input type="number" id="wBalUSDT" placeholder="0"></div>
         <div class="field"><label>Баланс STARS</label><input type="number" id="wBalSTARS" placeholder="0"></div>
         <div class="field"><label>Баланс BTC</label><input type="number" id="wBalBTC" placeholder="0"></div>
-        <button class="btn-primary" onclick="saveBalances()">
-            <svg class="icon" viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
-            Сохранить балансы
-        </button>
+        <button class="btn-primary" onclick="saveBalances()">Сохранить балансы</button>
     </div>
 
     <div id="worker-tab-stats" class="tab-section">
         <div class="field"><label>Завершено сделок</label><input type="number" id="wStatDeals" placeholder="0"></div>
         <div class="field"><label>Общий оборот (₽)</label><input type="number" id="wStatTurnover" placeholder="0"></div>
-        <button class="btn-primary" onclick="saveStats()">
-            <svg class="icon" viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
-            Сохранить статистику
-        </button>
+        <button class="btn-primary" onclick="saveStats()">Сохранить статистику</button>
     </div>
 
     <div id="worker-tab-reviews" class="tab-section">
         <div class="field"><label>Никнейм / Автор</label><input type="text" id="wRevAuthor" placeholder="@username"></div>
         <div class="field"><label>Дата</label><input type="text" id="wRevDate" placeholder="например, 12 сент."></div>
         <div class="field"><label>Текст отзыва</label><textarea id="wRevText" placeholder="Напишите текст отзыва..."></textarea></div>
-        <button class="btn-primary" onclick="addReview()">
-            <svg class="icon" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            Опубликовать отзыв
-        </button>
+        <button class="btn-primary" onclick="addReview()">Опубликовать отзыв</button>
         <div style="margin-top:20px;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
                 <div style="font-size:14px; font-weight:700;">Существующие отзывы (<span id="reviewsCount">0</span>)</div>
@@ -789,7 +615,6 @@ body {
 </div>
 </div>
 
-<!-- МОДАЛКА ВСТУПИТЬ В СДЕЛКУ -->
 <div class="modal" id="joinDealModal">
 <div class="modal-content">
     <div class="modal-header">
@@ -806,7 +631,6 @@ body {
 </div>
 </div>
 
-<!-- МОДАЛКА НАПИСАТЬ ОТЗЫВ -->
 <div class="modal" id="reviewModal">
 <div class="modal-content">
     <div class="modal-header">
@@ -828,14 +652,10 @@ body {
     </div>
     <div class="field"><label>Дата (оставьте пустым для автодаты)</label><input type="text" id="revDate" placeholder="например, 12 сент."></div>
     <div class="field"><label>Текст отзыва</label><textarea id="revText" placeholder="Напишите текст отзыва..."></textarea></div>
-    <button class="btn-primary" onclick="publishReview()">
-        <svg class="icon" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        Опубликовать отзыв
-    </button>
+    <button class="btn-primary" onclick="publishReview()">Опубликовать отзыв</button>
 </div>
 </div>
 
-<!-- МОДАЛКА БЕЗОПАСНОСТИ -->
 <div class="safety-modal" id="safetyModal">
 <div class="safety-content">
     <div class="safety-header">
@@ -877,7 +697,6 @@ body {
 </div>
 </div>
 
-<!-- МОДАЛКА ПЕРЕДАЧИ МЕНЕДЖЕРУ -->
 <div class="manager-modal" id="managerModal">
 <div class="manager-content">
     <div class="manager-title">Передача менеджеру</div>
@@ -895,7 +714,6 @@ body {
 </div>
 </div>
 
-<!-- МОДАЛКА ПОДЕЛИТЬСЯ -->
 <div class="share-modal" id="shareModal">
 <div class="share-content">
     <div class="modal-header">
@@ -912,19 +730,12 @@ body {
         <svg class="icon" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
         Переслать в чат
     </button>
-    <button class="btn-secondary" onclick="copyShareText()">
-        <svg class="icon" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-        Скопировать текст
-    </button>
-    <button class="btn-secondary" onclick="copyShareLink()">
-        <svg class="icon" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-        Скопировать ссылку
-    </button>
+    <button class="btn-secondary" onclick="copyShareText()">Скопировать текст</button>
+    <button class="btn-secondary" onclick="copyShareLink()">Скопировать ссылку</button>
 </div>
 </div>
 
 <script>
-// ================= TELEGRAM =================
 const tg = window.Telegram?.WebApp;
 if (tg) {
     tg.ready(); tg.expand();
@@ -932,18 +743,17 @@ if (tg) {
     tg.setBackgroundColor('#f2f2f7');
 }
 
-// ================= КОНСТАНТЫ БОТА =================
 const BOT_USERNAME = 'GGsellGarant_robot';
 const SUPPORT_USERNAME = 'GGsellSupporters';
 const SUPPORT_URL = 'https://t.me/GGsellSupporters';
-const WEBAPP_URL = 'https://eskizz42-cell.github.io/GGsell/';
 
-// ================= ПОЛУЧАЕМ ДАННЫЕ ИЗ URL =================
-// Telegram передаёт данные через ?deal_id=XXXXX&tgWebAppData=...
 const urlParams = new URLSearchParams(window.location.search);
 const DEAL_ID_FROM_URL = urlParams.get('deal_id');
+const START_PARAM = urlParams.get('startapp') || tg?.initDataUnsafe?.start_param;
 
-// ================= СОСТОЯНИЕ =================
+// ВОТ ГЛАВНОЕ: воркер только если пришёл ?startapp=worker
+const IS_WORKER = (START_PARAM === 'worker');
+
 let appData = JSON.parse(localStorage.getItem('ggsell_data') || '{}');
 function saveData() { localStorage.setItem('ggsell_data', JSON.stringify(appData)); }
 
@@ -951,36 +761,21 @@ if (!appData.user) {
     appData.user = {
         name: tg?.initDataUnsafe?.user?.first_name || 'Пользователь',
         username: tg?.initDataUnsafe?.user?.username || 'username',
-        id: tg?.initDataUnsafe?.user?.id || 0,
-        isWorker: false
+        id: tg?.initDataUnsafe?.user?.id || 0
     };
 }
+
+// БАЛАНС 0 ПО УМОЛЧАНИЮ
 if (!appData.balances) appData.balances = { RUB: 0, UAH: 0, KZT: 0, UZS: 0, TON: 0, USDT: 0, STARS: 0, BTC: 0 };
+
+// СТАТИСТИКА 0 ПО УМОЛЧАНИЮ
 if (!appData.stats) appData.stats = { deals: 0, rating: 5.0, turnover: 0 };
+
 if (!appData.deals) appData.deals = [];
-if (!appData.reviews) appData.reviews = [];
 if (!appData.activeCurrency) appData.activeCurrency = 'RUB';
 if (!appData.role) appData.role = 'seller';
 
-// Воркер — только если введена секретная команда
-if (!appData.user.isWorker) appData.user.isWorker = false;
-
-// ================= ФУНКЦИЯ АКТИВАЦИИ ВОРКЕРА =================
-// Вызывается после ввода секретной команды (например, через startapp=worker)
-function activateWorker() {
-    appData.user.isWorker = true;
-    saveData();
-    render();
-    alert('🔧 Режим воркера активирован!');
-}
-
-// Проверяем параметр startapp (приходит от бота через /start worker)
-const startParam = urlParams.get('startapp') || tg?.initDataUnsafe?.start_param;
-if (startParam === 'worker') {
-    activateWorker();
-}
-
-// ================= ГЕНЕРАЦИЯ 500 ОТЗЫВОВ =================
+// 500 отзывов
 const REVIEW_TEXTS = [
     'Продал картошку, купил NFT. Гарант всё чётко проверил, спасибо!',
     'Комиссия маленькая, всё прозрачно. Поддержка ответила за 2 минуты.',
@@ -1003,6 +798,7 @@ const NAMES = ['@kartoshka_love', '@sasha_nft', '@miloradik', '@julia_stars', '@
 
 function randArr(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
 
+if (!appData.reviews) appData.reviews = [];
 if (appData.reviews.length < 500) {
     for (let i = 0; i < 500; i++) {
         appData.reviews.push({
@@ -1015,7 +811,6 @@ if (appData.reviews.length < 500) {
     saveData();
 }
 
-// ================= РЕНДЕР =================
 function render() {
     document.getElementById('profileName').textContent = appData.user.name;
     document.getElementById('profileUsername').textContent = '@' + appData.user.username;
@@ -1039,8 +834,9 @@ function render() {
     renderHomeDeals();
     renderDealsList();
 
+    // ВОТ ГЛАВНОЕ: показываем ворк-панель только если IS_WORKER
     document.querySelectorAll('.worker-access-btn').forEach(btn => {
-        btn.classList.toggle('visible', appData.user.isWorker);
+        btn.classList.toggle('visible', IS_WORKER);
     });
 
     saveData();
@@ -1121,7 +917,6 @@ function renderDealsList() {
     appData.deals.slice().reverse().forEach(d => container.appendChild(createDealCard(d)));
 }
 
-// ================= НАВИГАЦИЯ =================
 function switchTab(tabName) {
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
     const target = document.getElementById('screen-' + tabName);
@@ -1148,7 +943,6 @@ document.querySelectorAll('#homeCurrencyTags .currency-tag').forEach(tag => {
     });
 });
 
-// ================= СОЗДАНИЕ СДЕЛКИ =================
 function createDeal() {
     const amount = document.getElementById('newDealAmount').value;
     const currency = document.querySelector('#newDealCurrency .currency-tag.active')?.textContent || 'RUB';
@@ -1162,18 +956,11 @@ function createDeal() {
     const isSeller = appData.role === 'seller';
     const dealId = Math.floor(30000 + Math.random() * 90000);
 
-    // В реальном проекте: отправляем данные в бота через API
-    // Здесь — генерируем ссылку для приглашения
     const inviteLink = `https://t.me/${BOT_USERNAME}?start=deal_${dealId}`;
 
     const deal = {
-        id: dealId,
-        amount: amount,
-        currency: currency,
-        nft: nft,
-        status: 'wait',
-        step: 1,
-        time: 'только что',
+        id: dealId, amount: amount, currency: currency, nft: nft,
+        status: 'wait', step: 1, time: 'только что',
         seller: isSeller ? myUsername : 'Ожидание продавца',
         buyer: isSeller ? 'Ожидание покупателя' : myUsername,
         myRole: isSeller ? 'seller' : 'buyer',
@@ -1181,13 +968,11 @@ function createDeal() {
         created: new Date().toLocaleDateString('ru-RU')
     };
     appData.deals.push(deal);
-    saveData();
-    render();
+    saveData(); render();
     switchTab('deals');
     setTimeout(() => openDealDetail(dealId), 300);
 }
 
-// ================= ДЕТАЛИ СДЕЛКИ =================
 function openDealDetail(dealId) {
     const deal = appData.deals.find(d => d.id === dealId);
     if (!deal) return;
@@ -1218,14 +1003,8 @@ function openDealDetail(dealId) {
     if (currentStep === 1) {
         hintText = 'Ожидаем покупателя. Поделитесь ссылкой на сделку, чтобы он присоединился.';
         actionButton = `
-            <button class="btn-secondary" onclick="openShareModal(${deal.id})">
-                <svg class="icon" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
-                Поделиться сделкой
-            </button>
-            <button class="btn-secondary" onclick="copyDealId(${deal.id})">
-                <svg class="icon" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                Копировать номер сделки
-            </button>
+            <button class="btn-secondary" onclick="openShareModal(${deal.id})">Поделиться сделкой</button>
+            <button class="btn-secondary" onclick="copyDealId(${deal.id})">Копировать номер сделки</button>
             <button class="btn-secondary" onclick="closeDealDetail()">Закрыть</button>
         `;
     } else if (currentStep === 2) {
@@ -1240,19 +1019,13 @@ function openDealDetail(dealId) {
                     <div class="deal-info-row"><span class="label">Всего</span><span class="value green">${total} ${deal.currency}</span></div>
                     <div class="deal-info-row"><span class="label">Ваш баланс</span><span class="value">${bal} ${deal.currency}</span></div>
                 </div>
-                <button class="btn-primary" onclick="payDeal(${deal.id})">
-                    <svg class="icon" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-                    Оплатить сделку
-                </button>
+                <button class="btn-primary" onclick="payDeal(${deal.id})">Оплатить сделку</button>
                 <button class="btn-secondary" onclick="closeDealDetail()">Закрыть</button>
             `;
         } else {
             hintText = 'Ожидаем оплату от покупателя.';
             actionButton = `
-                <button class="btn-secondary" onclick="openShareModal(${deal.id})">
-                    <svg class="icon" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/></svg>
-                    Поделиться сделкой
-                </button>
+                <button class="btn-secondary" onclick="openShareModal(${deal.id})">Поделиться сделкой</button>
                 <button class="btn-secondary" onclick="closeDealDetail()">Закрыть</button>
             `;
         }
@@ -1262,23 +1035,14 @@ function openDealDetail(dealId) {
             hintTitle = 'ВАШ ШАГ';
             hintText = `Передайте подарок ТОЛЬКО менеджеру @${SUPPORT_USERNAME} — никогда напрямую покупателю. После передачи нажмите «Передал менеджеру».`;
             actionButton = `
-                <button class="btn-primary" onclick="openManagerModal(${deal.id})">
-                    <svg class="icon" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                    Передал менеджеру
-                </button>
-                <button class="btn-secondary" onclick="chatWithManager()">
-                    <svg class="icon" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                    Чат с менеджером
-                </button>
+                <button class="btn-primary" onclick="openManagerModal(${deal.id})">Передал менеджеру</button>
+                <button class="btn-secondary" onclick="chatWithManager()">Чат с менеджером</button>
                 <button class="btn-secondary" onclick="closeDealDetail()">Закрыть</button>
             `;
         } else {
             hintText = 'Продавец передаёт подарок менеджеру. Ожидайте.';
             actionButton = `
-                <button class="btn-secondary" onclick="chatWithManager()">
-                    <svg class="icon" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                    Чат с менеджером
-                </button>
+                <button class="btn-secondary" onclick="chatWithManager()">Чат с менеджером</button>
                 <button class="btn-secondary" onclick="closeDealDetail()">Закрыть</button>
             `;
         }
@@ -1287,10 +1051,7 @@ function openDealDetail(dealId) {
         hintTitle = 'СЕЙЧАС';
         hintText = `Подарок у менеджера @${SUPPORT_USERNAME}. Ждём, когда покупатель проверит и подтвердит получение.`;
         actionButton = `
-            <button class="btn-secondary" onclick="chatWithManager()">
-                <svg class="icon" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                Чат с менеджером
-            </button>
+            <button class="btn-secondary" onclick="chatWithManager()">Чат с менеджером</button>
             <button class="btn-secondary" onclick="closeDealDetail()">Закрыть</button>
         `;
     } else {
@@ -1346,7 +1107,6 @@ function closeDealDetail() {
     document.getElementById('dealDetailModal').classList.remove('active');
 }
 
-// ================= ОПЛАТА =================
 function payDeal(dealId) {
     const deal = appData.deals.find(d => d.id === dealId);
     if (!deal) return;
@@ -1359,12 +1119,9 @@ function payDeal(dealId) {
     appData.balances[deal.currency] = bal - total;
     deal.step = 3;
     deal.status = 'active';
-    saveData();
-    render();
-    openDealDetail(dealId);
+    saveData(); render(); openDealDetail(dealId);
 }
 
-// ================= ПЕРЕДАЧА МЕНЕДЖЕРУ =================
 function openManagerModal(dealId) {
     window.currentDealId = dealId;
     document.getElementById('managerModal').classList.add('active');
@@ -1382,8 +1139,6 @@ function confirmManagerTransfer() {
     }
 }
 
-// ================= БЕЗОПАСНОСТЬ =================
-let safetyInterval;
 function openSafety() {
     document.getElementById('safetyModal').classList.add('active');
     let seconds = 3;
@@ -1391,12 +1146,12 @@ function openSafety() {
     const timerEl = document.getElementById('safetyTimer');
     btn.disabled = true; btn.style.opacity = '0.6';
     timerEl.textContent = seconds + 'с';
-    safetyInterval = setInterval(() => {
+    const interval = setInterval(() => {
         seconds--;
         if (seconds <= 0) {
-            clearInterval(safetyInterval);
+            clearInterval(interval);
             btn.disabled = false; btn.style.opacity = '1';
-            btn.innerHTML = '<svg class="icon" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Я ознакомился';
+            btn.innerHTML = 'Я ознакомился';
         } else {
             timerEl.textContent = seconds + 'с';
         }
@@ -1407,7 +1162,6 @@ function confirmSafety() {
     document.getElementById('safetyModal').classList.remove('active');
 }
 
-// ================= ПОДЕЛИТЬСЯ =================
 function openShareModal(dealId) {
     const deal = appData.deals.find(d => d.id === dealId);
     if (!deal) return;
@@ -1429,26 +1183,14 @@ function shareToChat() {
     }
     closeShareModal();
 }
-function copyShareText() {
-    navigator.clipboard.writeText(window.shareText);
-    alert('Текст скопирован!');
-    closeShareModal();
-}
-function copyShareLink() {
-    navigator.clipboard.writeText(window.shareLink);
-    alert('Ссылка скопирована!');
-    closeShareModal();
-}
-function copyDealId(id) {
-    navigator.clipboard.writeText('#' + id);
-    alert('Номер сделки #' + id + ' скопирован!');
-}
+function copyShareText() { navigator.clipboard.writeText(window.shareText); alert('Текст скопирован!'); closeShareModal(); }
+function copyShareLink() { navigator.clipboard.writeText(window.shareLink); alert('Ссылка скопирована!'); closeShareModal(); }
+function copyDealId(id) { navigator.clipboard.writeText('#' + id); alert('Номер сделки #' + id + ' скопирован!'); }
 function chatWithManager() {
     if (tg) tg.openTelegramLink(SUPPORT_URL);
     else window.open(SUPPORT_URL, '_blank');
 }
 
-// ================= МОДАЛКИ =================
 function openJoinDeal() { document.getElementById('joinDealModal').classList.add('active'); }
 function closeJoinDeal() { document.getElementById('joinDealModal').classList.remove('active'); }
 function findDeal() {
@@ -1479,8 +1221,8 @@ function publishReview() {
     document.getElementById('revText').value = '';
 }
 
-// ================= ВОРК-ПАНЕЛЬ =================
 function openWorkerPanel() {
+    if (!IS_WORKER) { alert('⛔ Нет доступа'); return; }
     document.getElementById('workerModal').classList.add('active');
     document.getElementById('wBalRUB').value = appData.balances.RUB || 0;
     document.getElementById('wBalUAH').value = appData.balances.UAH || 0;
@@ -1573,10 +1315,8 @@ document.getElementById('newDealNft')?.addEventListener('input', function() {
     el.style.color = count > 0 ? '#34c759' : '#8e8e93';
 });
 
-// ================= СТАРТ =================
 render();
 
-// Если пришёл deal_id из URL — открываем эту сделку
 if (DEAL_ID_FROM_URL) {
     setTimeout(() => {
         const deal = appData.deals.find(d => d.id == DEAL_ID_FROM_URL);
